@@ -1,5 +1,5 @@
-import api from "../../public/services/api";
-import City from "../weather/city";
+import api from "../public/services/api";
+import City from "./city";
 
 export default class CityService {
   public async findCity(pParams: { q: string }): Promise<City> {

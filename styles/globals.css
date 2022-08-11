@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#search-container {
+  transition: all ease 200ms;
+}
