@@ -1,11 +1,9 @@
 import { WiBarometer, WiHumidity, WiThermometerExterior } from "react-icons/wi";
-import City from "./city";
 
-export default function Result({ hidden, city }) {
-  console.log(city);
+export default function Result({ city }) {
   return city ? (
     <result>
-      <div className="max-w-sm rounded overflow-hidden shadow-lg">
+      <div className="w-96 rounded overflow-hidden shadow-lg">
         <div className="px-6 py-4">
           <div className="flex justify-between font-bold text-2xl mb-2 border-b">
             <p>{city.getName() + "," + city.getCountry()}</p>
@@ -34,8 +32,13 @@ export default function Result({ hidden, city }) {
       </div>
     </result>
   ) : (
-    <div className="flex-none w-96" hidden={hidden}>
-      <h1> Não há cidades com este nome</h1>
+    <div
+      id="error"
+      className="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"
+      role="alert"
+    >
+      <p className="font-bold">Ops!</p>
+      <p>Não há cidades com este nome.</p>
     </div>
   );
 }

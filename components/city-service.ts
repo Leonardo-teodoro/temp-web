@@ -4,10 +4,10 @@ import City from "./city";
 export default class CityService {
   public async findCity(pParams: { q: string }): Promise<City> {
     try {
+      pParams.q = pParams.q.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       const response = await api.get(`/cities/temperature?q=${pParams.q}`, {});
 
       const city = response.data;
-
       return new City(
         city.name,
         city.coord,
@@ -23,8 +23,8 @@ export default class CityService {
         city.sys.country,
         city.timezone
       );
-    } catch (err) {
-      throw new Error(err);
+    } catch (e) {
+      throw new Error("Erro ao obter cidades");
     }
   }
 }

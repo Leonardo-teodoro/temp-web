@@ -11,11 +11,14 @@ export default function Search() {
     event.preventDefault();
 
     const service = new CityService();
-    const response = await service.findCity({
-      q: document.getElementById("city").value,
-    });
-
-    setCity(response);
+    try {
+      const response = await service.findCity({
+        q: document.getElementById("city").value,
+      });
+      setCity(response);
+    } catch (e) {
+      setCity(null);
+    }
   };
   return (
     <div>
@@ -48,8 +51,8 @@ export default function Search() {
         </div>
       </search>
 
-      <div>
-        <Result hidden={city === null} city={city} />
+      <div className="flex justify-center">
+        <Result city={city} />
       </div>
     </div>
   );
